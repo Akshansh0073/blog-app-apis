@@ -3,6 +3,7 @@ package com.codewithdurgesh.blog.blog_app_apis.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,9 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserRepo userRepo;
 	
+	@Autowired
+	private ModelMapper modelMapper;
+	
 	@Override
 	public UserDto createUser(UserDto userDto) {
 		User user = this.dtoToUser(userDto);
@@ -29,7 +33,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public UserDto updateUser(UserDto userDto, Integer id) {
 		User user = userRepo.findById(id).
-				orElseThrow(() -> new ResourceNotFoundfException("User","id",id));
+				orElseThrow(() -> new ResourceNotFoundException("User","id",id));
 		
 		user.setName(userDto.getName());
 		user.setEmail(userDto.getEmail());
@@ -44,7 +48,7 @@ public class UserServiceImpl implements UserService{
 	public UserDto getUserById(Integer id) {
 		
 		User user = userRepo.findById(id).
-				orElseThrow(() -> new ResourceNotFoundfException("User","id",id));
+				orElseThrow(() -> new ResourceNotFoundException("User","id",id));
 		return this.userToDto(user);
 	}
 
@@ -61,29 +65,37 @@ public class UserServiceImpl implements UserService{
 	public void deleteUser(Integer id) {
 		
 		User user = userRepo.findById(id).
-				orElseThrow(() -> new ResourceNotFoundfException("User","id",id));
+				orElseThrow(() -> new ResourceNotFoundException("User","id",id));
 		userRepo.delete(user);
 		
 	}
 	
 	private User dtoToUser (UserDto userDto) {
-		User user = new User();
-		user.setId(userDto.getId());
-		user.setName(userDto.getName());
-		user.setEmail(userDto.getEmail());
-		user.setAbout(userDto.getAbout());
-		user.setPassword(userDto.getPassword());
+		//1
+		User user = modelMapper.map(userDto, User.class);
+		
+		//2
+//		User user = new User();
+//		user.setId(userDto.getId());
+//		user.setName(userDto.getName());
+//		user.setEmail(userDto.getEmail());
+//		user.setAbout(userDto.getAbout());
+//		user.setPassword(userDto.getPassword());
+		
 		return user;
 	}
 	
-	private UserDto userToDto (User userDto) {
-		UserDto user = new UserDto();
-		user.setId(userDto.getId());
-		user.setName(userDto.getName());
-		user.setEmail(userDto.getEmail());
-		user.setAbout(userDto.getAbout());
-		user.setPassword(userDto.getPassword());
-		return user;
+	private UserDto userToDto (User user) {
+		
+		UserDto userDto = modelMapper.map(user, UserDto.class);
+		
+//		UserDto userDto = new UserDto();
+//		userDto.setId(user.getId());
+//		userDto.setName(user.getName());
+//		userDto.setEmail(user.getEmail());
+//		userDto.setAbout(user.getAbout());
+//		userDto.setPassword(user.getPassword());
+		return userDto;
 	}
 
 }

@@ -1,11 +1,26 @@
 package com.codewithdurgesh.blog.blog_app_apis.payload;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class UserDto {
 	
 	private int id;
+	
+	@NotEmpty
+	@Size(min = 4, message="User name must contain 4 letters")
 	private String name;
+	
+	@Email(message="Your email address is not valid")
 	private String email;
+	
+	@NotEmpty
+	@Size(min=3, max=10, message="Password must be min of 3 letters and amx of 10 letters")
 	private String password;
+	
+	@NotEmpty
 	private String about;
 	
 	
@@ -13,12 +28,15 @@ public class UserDto {
 		super();
 
 	}
+	
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}

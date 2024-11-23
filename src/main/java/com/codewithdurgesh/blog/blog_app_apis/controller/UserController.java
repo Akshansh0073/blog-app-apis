@@ -19,6 +19,8 @@ import com.codewithdurgesh.blog.blog_app_apis.payload.ApiResponse;
 import com.codewithdurgesh.blog.blog_app_apis.payload.UserDto;
 import com.codewithdurgesh.blog.blog_app_apis.service.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -27,21 +29,21 @@ public class UserController {
 	private UserService userService;
 	
 	@PostMapping("/")
-	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
 		
 		UserDto savedUserDto = userService.createUser(userDto);
-		return new ResponseEntity<>(savedUserDto,HttpStatus.CREATED);
+		return new ResponseEntity<UserDto>(savedUserDto,HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/{userId}")
-	public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,@PathVariable Integer userId) {
+	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto,@PathVariable Integer userId) {
 		
 		UserDto updatedUser = userService.updateUser(userDto,userId);
 		return new ResponseEntity<>(updatedUser,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{userId}")
-	public ResponseEntity<ApiResponse> deleteUser(@RequestBody UserDto userDto,@PathVariable Integer userId) {
+	public ResponseEntity<ApiResponse> deleteUser(@PathVariable Integer userId) {
 		
 		userService.deleteUser(userId);
 		return new ResponseEntity<>(new ApiResponse("User Deleted Successfully",true),HttpStatus.OK);
@@ -57,7 +59,7 @@ public class UserController {
 	@GetMapping("/{userId}")
     public ResponseEntity<UserDto> getSingleUser (@PathVariable Integer userId){
 		
-    	UserDto userDto = userService.getUserById(userId);
+    	 UserDto userDto = userService.getUserById(userId);
     	 return new ResponseEntity<UserDto>(userDto,HttpStatus.OK);
      }
 
