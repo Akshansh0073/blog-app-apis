@@ -68,13 +68,13 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryDtos;
 	}
 	
-	private CategoryDto categoryToDto(Category category) {
+	public CategoryDto categoryToDto(Category category) {
 		
 		CategoryDto categoryDto = modelMapper.map(category, CategoryDto.class);
 		return categoryDto;
 	}
 	
-    private Category dtoToCategory(CategoryDto categoryDto) {
+	public Category dtoToCategory(CategoryDto categoryDto) {
 		
 		Category category = modelMapper.map(categoryDto, Category.class);
 		return category;

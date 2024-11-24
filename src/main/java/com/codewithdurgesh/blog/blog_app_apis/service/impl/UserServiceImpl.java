@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService{
 		
 	}
 	
-	private User dtoToUser (UserDto userDto) {
+	public User dtoToUser (UserDto userDto) {
 		//1
 		User user = modelMapper.map(userDto, User.class);
 		
@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 	
-	private UserDto userToDto (User user) {
+	public UserDto userToDto (User user) {
 		
 		UserDto userDto = modelMapper.map(user, UserDto.class);
 		
