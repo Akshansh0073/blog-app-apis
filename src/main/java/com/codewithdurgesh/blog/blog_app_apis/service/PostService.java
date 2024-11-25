@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.codewithdurgesh.blog.blog_app_apis.payload.PostDto;
+import com.codewithdurgesh.blog.blog_app_apis.payload.PostResponse;
 
 public interface PostService {
 
@@ -18,7 +19,7 @@ public interface PostService {
 	void deletePost(Integer postId);
 	
 	// get All posts
-	List<PostDto> getAllPost();
+	PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
 	
 	// get single Post
 	PostDto getPostById(Integer postId);

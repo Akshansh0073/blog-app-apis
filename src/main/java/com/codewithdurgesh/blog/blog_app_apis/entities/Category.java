@@ -18,22 +18,30 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="categories")
+@Table(name = "categories")
 public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer categoryId;
-	
-	@Column(name="title",nullable = false)
+
+	@Column(name = "title", nullable = false)
 	private String categoryTitle;
-	
-	@Column(name="description")
+
+	@Column(name = "description")
 	private String categoryDescription;
-	
-	@OneToMany(mappedBy = "category",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	List<Post> posts = new ArrayList<>();
 	
+
+	// Getter and Setter
+	
+	public Category() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public List<Post> getPosts() {
 		return posts;
 	}
@@ -42,20 +50,13 @@ public class Category {
 		this.posts = posts;
 	}
 
-	public Category() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public Integer getCategoryId() {
 		return categoryId;
 	}
 
-
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
 	}
-
 
 	public String getCategoryTitle() {
 		return categoryTitle;
@@ -72,6 +73,5 @@ public class Category {
 	public void setCategoryDescription(String categoryDescription) {
 		this.categoryDescription = categoryDescription;
 	}
-	
-	
+
 }

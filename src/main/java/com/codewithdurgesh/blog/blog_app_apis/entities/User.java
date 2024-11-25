@@ -1,7 +1,9 @@
 package com.codewithdurgesh.blog.blog_app_apis.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -18,17 +20,25 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	
+	private Integer id;
+
 	private String name;
 	private String email;
 	private String password;
 	private String about;
-	
-	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	List<Post> posts = new ArrayList<>();
-	
-	
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Comment> comments = new HashSet<Comment>();
+
+	// Getter and Setter
+
+	public User() {
+		super();
+	}
+
 	public List<Post> getPosts() {
 		return posts;
 	}
@@ -37,11 +47,14 @@ public class User {
 		this.posts = posts;
 	}
 
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
+	public Set<Comment> getComments() {
+		return comments;
 	}
-	
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -53,27 +66,33 @@ public class User {
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getAbout() {
 		return about;
 	}
+
 	public void setAbout(String about) {
 		this.about = about;
 	}
-	
-	
+
 }

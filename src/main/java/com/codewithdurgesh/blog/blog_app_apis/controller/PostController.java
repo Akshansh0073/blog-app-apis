@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codewithdurgesh.blog.blog_app_apis.config.AppConstants;
 import com.codewithdurgesh.blog.blog_app_apis.payload.ApiResponse;
 import com.codewithdurgesh.blog.blog_app_apis.payload.PostDto;
+import com.codewithdurgesh.blog.blog_app_apis.payload.PostResponse;
 import com.codewithdurgesh.blog.blog_app_apis.service.PostService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -55,10 +57,15 @@ public class PostController {
 	}
 	
 	@GetMapping("/posts")
-	public ResponseEntity<List<PostDto>> getAllPosts(){
+	public ResponseEntity<PostResponse> getAllPosts(
+			@RequestParam(value="pageNumber", defaultValue=AppConstants.PAGE_NUMBER,required = false) Integer pageNumber,
+			@RequestParam(value="pageSize", defaultValue=AppConstants.PAGE_SIZE,required = false) Integer pageSize,
+			@RequestParam(value="sortBy", defaultValue=AppConstants.SORT_BY,required = false) String sortBy,
+			@RequestParam(value="sortDir", defaultValue=AppConstants.SORT_DIR,required = false) String sortDir
+			){
 		
-		List<PostDto> postDtos = postService.getAllPost();
-		return new ResponseEntity<List<PostDto>>(postDtos,HttpStatus.OK);
+		PostResponse postResonse = postService.getAllPost(pageNumber,pageSize,sortBy,sortDir);
+		return new ResponseEntity<PostResponse>(postResonse,HttpStatus.OK);
 	}
 	
 	@GetMapping("/posts/{postId}")
@@ -83,6 +90,13 @@ public class PostController {
 	{
 		PostDto updatedPost = postService.updatePost(postDto, postId);
 		return new ResponseEntity<PostDto>(updatedPost,HttpStatus.OK);
+	}
+	
+	@GetMapping("/posts/search/{keyword}")
+	public ResponseEntity<List<PostDto>> searchPostByTitle(@PathVariable String keyword){
+		
+		List<PostDto> postDto = postService.searchPost(keyword);
+		return new ResponseEntity<List<PostDto>>(postDto,HttpStatus.OK);
 	}
 	
 }
