@@ -33,10 +33,9 @@ public class Category {
 
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	List<Post> posts = new ArrayList<>();
-	
 
 	// Getter and Setter
-	
+
 	public Category() {
 		super();
 		// TODO Auto-generated constructor stub

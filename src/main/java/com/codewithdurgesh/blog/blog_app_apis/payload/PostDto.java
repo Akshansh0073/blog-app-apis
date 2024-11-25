@@ -1,6 +1,10 @@
 package com.codewithdurgesh.blog.blog_app_apis.payload;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.codewithdurgesh.blog.blog_app_apis.entities.Comment;
 
 public class PostDto {
 
@@ -17,6 +21,8 @@ public class PostDto {
 	private CategoryDto category;
 
 	private UserDto user;
+	
+	private Set<CommentDto> comments = new HashSet<>();
 
 	public PostDto() {
 		super();
@@ -82,6 +88,14 @@ public class PostDto {
 
 	public void setAddedDate(Date addedDate) {
 		this.addedDate = addedDate;
+	}
+
+	public Set<CommentDto> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<CommentDto> comments) {
+		this.comments = comments;
 	}
 
 	

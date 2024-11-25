@@ -30,8 +30,8 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	List<Post> posts = new ArrayList<>();
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Set<Comment> comments = new HashSet<Comment>();
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//	private Set<Comment> comments = new HashSet<Comment>();
 
 	// Getter and Setter
 
@@ -47,13 +47,13 @@ public class User {
 		this.posts = posts;
 	}
 
-	public Set<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
-	}
+//	public Set<Comment> getComments() {
+//		return comments;
+//	}
+//
+//	public void setComments(Set<Comment> comments) {
+//		this.comments = comments;
+//	}
 
 	public int getId() {
 		return id;
