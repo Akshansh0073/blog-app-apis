@@ -9,6 +9,8 @@ import com.codewithdurgesh.blog.blog_app_apis.payload.UserDto;
 
 public interface UserService {
 	
+	UserDto registerNewUser(UserDto user);
+	
 	UserDto createUser(UserDto user);
 	
 	UserDto updateUser(UserDto user, Integer id);

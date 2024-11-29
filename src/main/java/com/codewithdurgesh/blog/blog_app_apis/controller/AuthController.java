@@ -10,15 +10,19 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codewithdurgesh.blog.blog_app_apis.exception.ApiException;
 import com.codewithdurgesh.blog.blog_app_apis.payload.JwtRequest;
 import com.codewithdurgesh.blog.blog_app_apis.payload.JwtResponse;
+import com.codewithdurgesh.blog.blog_app_apis.payload.UserDto;
 import com.codewithdurgesh.blog.blog_app_apis.security.JwtTokenHelper;
+import com.codewithdurgesh.blog.blog_app_apis.service.UserService;
+
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -31,6 +35,9 @@ public class AuthController {
 
 	@Autowired
 	private AuthenticationManager manager;
+	
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	private JwtTokenHelper helper;
@@ -58,13 +65,14 @@ public class AuthController {
 			manager.authenticate(authentication);
 
 		} catch (BadCredentialsException e) {
-			throw new BadCredentialsException(" Invalid Username or Password  !!");
+			throw new ApiException(" Invalid Username or Password  !!");
 		}
-
 	}
-
-	@ExceptionHandler(BadCredentialsException.class)
-	public String exceptionHandler() {
-		return "Credentials Invalid !!";
+	
+	// register new user api 
+	@PostMapping("/register")
+	public ResponseEntity<UserDto> registerUser(@Valid @RequestBody UserDto userDto) {
+		UserDto registeredUser = this.userService.registerNewUser(userDto);
+		return new ResponseEntity<UserDto>(registeredUser, HttpStatus.CREATED);
 	}
 }
