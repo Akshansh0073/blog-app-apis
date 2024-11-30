@@ -14,7 +14,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import jakarta.persistence.CascadeType;
+<<<<<<< HEAD
 import jakarta.persistence.Column;
+=======
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +34,11 @@ public class User implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+<<<<<<< HEAD
 	private Long id;
+=======
+	private Integer id;
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 
 	private String name;
 	private String email;
@@ -70,6 +77,7 @@ public class User implements UserDetails {
 //		this.comments = comments;
 //	}
 
+<<<<<<< HEAD
 
 	public String getName() {
 		return name;
@@ -83,6 +91,20 @@ public class User implements UserDetails {
 		this.id = id;
 	}
 
+=======
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -112,6 +134,13 @@ public class User implements UserDetails {
 	}
 
 
+<<<<<<< HEAD
+=======
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 	public Set<Role> getRoles() {
 		return roles;
 	}

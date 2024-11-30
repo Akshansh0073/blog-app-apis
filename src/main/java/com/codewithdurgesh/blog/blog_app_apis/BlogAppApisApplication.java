@@ -36,17 +36,29 @@ public class BlogAppApisApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
+<<<<<<< HEAD
 		System.out.println(passwordEncoder.encode("hjgj"));
+=======
+		System.out.println(passwordEncoder.encode("abc"));
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 		
 		try {
 			
 			Role role = new Role();
 			role.setId(AppConstants.ADMIN_USER);
+<<<<<<< HEAD
 			role.setName("ADMIN");
 
 			Role role1 = new Role();
 			role1.setId(AppConstants.NORMAL_USER);
 			role1.setName("NORMAL");
+=======
+			role.setName("ROLE_ADMIN");
+
+			Role role1 = new Role();
+			role1.setId(AppConstants.NORMAL_USER);
+			role1.setName("ROLE_NORMAL");
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 
 			List<Role> roles = List.of(role, role1);
 

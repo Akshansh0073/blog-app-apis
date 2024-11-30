@@ -1,8 +1,11 @@
 package com.codewithdurgesh.blog.blog_app_apis.payload;
 
+<<<<<<< HEAD
 import java.util.HashSet;
 import java.util.Set;
 
+=======
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -10,7 +13,11 @@ import jakarta.validation.constraints.Size;
 
 public class UserDto {
 	
+<<<<<<< HEAD
 	private Long id;
+=======
+	private int id;
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 	
 	@NotEmpty
 	@Size(min = 4, message="User name must contain 4 letters")
@@ -26,14 +33,18 @@ public class UserDto {
 	@NotEmpty
 	private String about;
 	
+<<<<<<< HEAD
 	private Set<RoleDto> roles = new HashSet<>();
 	
+=======
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 	
 	public UserDto() {
 		super();
 
 	}
 	
+<<<<<<< HEAD
 	public Long getId() {
 		return id;
 	}
@@ -44,6 +55,16 @@ public class UserDto {
 	}
 
 
+=======
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 	public String getName() {
 		return name;
 	}
@@ -68,6 +89,7 @@ public class UserDto {
 	public void setAbout(String about) {
 		this.about = about;
 	}
+<<<<<<< HEAD
 
 	public Set<RoleDto> getRoles() {
 		return roles;
@@ -76,6 +98,8 @@ public class UserDto {
 	public void setRoles(Set<RoleDto> roles) {
 		this.roles = roles;
 	}
+=======
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 	
 	
 }

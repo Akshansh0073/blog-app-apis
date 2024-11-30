@@ -37,7 +37,11 @@ public class UserController {
 	}
 
 	@PutMapping("/{userId}")
+<<<<<<< HEAD
 	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable Long userId) {
+=======
+	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable Integer userId) {
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 
 		UserDto updatedUser = userService.updateUser(userDto, userId);
 		return new ResponseEntity<>(updatedUser, HttpStatus.OK);
@@ -45,7 +49,11 @@ public class UserController {
 
 	@DeleteMapping("/{userId}")
 	@PreAuthorize("hasRole('ADMIN')")
+<<<<<<< HEAD
 	public ResponseEntity<ApiResponse> deleteUser(@PathVariable Long userId) {
+=======
+	public ResponseEntity<ApiResponse> deleteUser(@PathVariable Integer userId) {
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 
 		userService.deleteUser(userId);
 		return new ResponseEntity<>(new ApiResponse("User Deleted Successfully", true), HttpStatus.OK);
@@ -59,7 +67,11 @@ public class UserController {
 	}
 
 	@GetMapping("/{userId}")
+<<<<<<< HEAD
 	public ResponseEntity<UserDto> getSingleUser(@PathVariable Long userId) {
+=======
+	public ResponseEntity<UserDto> getSingleUser(@PathVariable Integer userId) {
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 
 		UserDto userDto = userService.getUserById(userId);
 		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);

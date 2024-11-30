@@ -41,7 +41,11 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public UserDto updateUser(UserDto userDto, Long id) {
+=======
+	public UserDto updateUser(UserDto userDto, Integer id) {
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 		User user = userRepo.findById(id).
 				orElseThrow(() -> new ResourceNotFoundException("User","id",id));
 		
@@ -55,7 +59,11 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public UserDto getUserById(Long id) {
+=======
+	public UserDto getUserById(Integer id) {
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 		
 		User user = userRepo.findById(id).
 				orElseThrow(() -> new ResourceNotFoundException("User","id",id));
@@ -72,7 +80,11 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void deleteUser(Long id) {
+=======
+	public void deleteUser(Integer id) {
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 		
 		User user = userRepo.findById(id).
 				orElseThrow(() -> new ResourceNotFoundException("User","id",id));

@@ -40,7 +40,11 @@ public class PostServiceImpl implements PostService {
 	private CategoryRepo categoryRepo;
 	
 	@Override
+<<<<<<< HEAD
 	public PostDto createPost(PostDto postDto, Long userId, Integer categoryId) {
+=======
+	public PostDto createPost(PostDto postDto, Integer userId, Integer categoryId) {
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 
 		User user = this.userRepo.findById(userId).
 				orElseThrow(() -> new ResourceNotFoundException("User","id",userId));
@@ -132,7 +136,11 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public List<PostDto> getPostsByUser(Long userId) {
+=======
+	public List<PostDto> getPostsByUser(Integer userId) {
+>>>>>>> 8896895971339f78d49ae75060a6b4e0391189a8
 		
 		User user = this.userRepo.findById(userId).
 				orElseThrow(() -> new ResourceNotFoundException("User","user id",userId));
